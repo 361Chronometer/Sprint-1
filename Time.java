@@ -1,4 +1,3 @@
-
 public class Time {
 	public int millis;
 	public int seconds;
@@ -14,7 +13,12 @@ public class Time {
 	}
 	
 	public static String difference(Time start, Time end) {
-		return (end.hours - start.hours) + ":" + (end.minutes - start.minutes) + ":" + 
+		String s = (end.hours - start.hours) + ":";
+		if (end.seconds - start.seconds < 0)
+			return s + (end.minutes -1 -start.minutes) + ":" + 
+				((end.seconds + 60) - start.seconds) + ":" + (end.millis - start.millis);
+		else
+			return s  + (end.minutes - start.minutes) + ":" + 
 				(end.seconds - start.seconds) + ":" + (end.millis - start.millis);
 	}
 	
