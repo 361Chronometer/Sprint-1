@@ -2,25 +2,21 @@ import java.time.LocalTime;
 
 public class Channel {
 	int channelNum;
-	Time time; // current time
+	LocalTime time;
 	boolean enable = false;
 	
-	Long t = time.initialize(); //holds the value of the start/end returned by initialize or stop
+	LocalTime t = LocalTime.now();
 	
 	public Channel(int num) {
 		channelNum = num;
 	}
 	
 	public void toggle() {
-		if (enable) {
-			enable = false;
-		} else {
-			enable = true;
-		}
+		enable = !enable;
 	}
 	
 	public void trigger() {
-		if (enable) t = time.stop();
+		if (enable) time = t;
 		
 	}
 	

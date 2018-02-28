@@ -1,46 +1,21 @@
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 
 public class Time {
-	public static long millis = System.currentTimeMillis() % 1000;
-	public static long start;
-	public static long end;
-	DateFormat formatter = new SimpleDateFormat("h:mm:ss:S");
+	public int millis;
+	public int seconds;
+	public int minutes;
+	public int hours;
 	
-	// initialize method
-	public long initialize () {
-		start = millis;
-		return start;
+	public Time (String s) {
+		String [] spl = s.split(":");
+		hours = Integer.parseInt(spl[0]);
+		minutes = Integer.parseInt(spl[1]);
+		seconds = Integer.parseInt(spl[2]);
+		millis = Integer.parseInt(spl[3]);
 	}
 	
-	// stop method
-	public long stop () {
-		end = millis;
-		return end;
+	public static String difference(Time start, Time end) {
+		return (end.hours - start.hours) + ":" + (end.minutes - start.minutes) + ":" + 
+				(end.seconds - start.seconds) + ":" + (end.millis - start.millis);
 	}
 	
-	// current time getter
-	public static long getTime() {
-		return millis;
-	}
-	
-	// start getter
-	public static long getStart() {
-		return start;
-	}
-	
-	// end getter
-	public static long getEnd() {
-		return end;
-	}
-	
-	// format the race time to return
-	public String form () {
-		long race = end - start;
-		Date r = new Date (race);
-		return formatter.format(r);
-		
-	}
 }
